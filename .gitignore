@@ -1,0 +1,11 @@
+# Keep the third-party design references out of the published site.
+# The screenshots in design-ref/ are other designers' work and are for local
+# visual reference only — they are not part of this site's deliverables.
+design-ref/
+
+# Local scratch
+node_modules/
+*.log
+Thumbs.db
+Desktop.ini
+.DS_Store
