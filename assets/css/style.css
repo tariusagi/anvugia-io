@@ -414,9 +414,10 @@ button { font: inherit; color: inherit; background: none; border: 0; }
 .nav__tab.is-active svg { opacity: 1; }
 
 .nav__cta { flex: none; }
-/* Contact is always reachable from the bar, even where the CTA is hidden. */
+/* The tab stands in for the CTA wherever the CTA is hidden, so a way to reach
+   the contact section is always present in the bar. */
 .nav__tab--mobile-only { display: none; }
-@media (max-width: 620px) {
+@media (max-width: 1080px) {
   .nav__tab--mobile-only { display: inline-flex; }
 }
 @media (max-width: 1080px) { .nav__cta { display: none; } }
@@ -441,8 +442,13 @@ button { font: inherit; color: inherit; background: none; border: 0; }
   .nav__inner { justify-content: flex-start; gap: 0.9rem; }
   .nav__tabs { margin-left: auto; }
 }
-@media (max-width: 420px) {
+/* Progressive narrowing: drop the lower-priority tabs before the bar has to
+   scroll, so Services, Tools and Contact always remain reachable in place. */
+@media (max-width: 560px) {
   .nav__tab[data-compact-hide] { display: none; }
+}
+@media (max-width: 420px) {
+  .nav__tab { padding: 0.25rem 0.3rem; letter-spacing: 0.08em; }
 }
 
 /* --- 7. Hero ------------------------------------------------------------ */
