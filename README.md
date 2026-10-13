@@ -22,10 +22,10 @@ assets/
   css/style.css             the entire design system, commented in sections
   js/main.js                progressive enhancement only (see §6)
   img/favicon.svg           the ✳ mark
-  img/og-cover.png          1200×630 social share card
+  img/og-cover.jpg          1200×630 social share card (progressive JPEG)
 tools/
   gen-series.js             regenerates the illustrative chart data
-  make-og.py                regenerates og-cover.png
+  make-og.py                regenerates og-cover.jpg
 design-ref/                 LOCAL ONLY — git-ignored, never published (see §7)
 ```
 
@@ -167,7 +167,7 @@ python tools/make-og.py
 ```
 
 It downloads Instrument Serif and JetBrains Mono into a temp directory (they
-are not committed) and rewrites `assets/img/og-cover.png`. The palette
+are not committed) and rewrites `assets/img/og-cover.jpg`. The palette
 constants at the top of the script match the CSS tokens.
 
 **Design tokens** all live at the top of `assets/css/style.css` — the paper and

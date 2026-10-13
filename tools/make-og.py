@@ -1,9 +1,13 @@
 """Build the Open Graph / social share card for anvugia.io.
 
-Writes assets/img/og-cover.png (1200x630).
+Writes assets/img/og-cover.jpg (1200x630).
 
 Run with the bundled Python:
     python tools/make-og.py
+
+JPEG rather than PNG on purpose: the card carries deliberate film grain, which
+costs ~858 KB as a PNG and ~149 KB as a progressive JPEG at q92, with no
+visible loss on the 15-17px mono labels.
 
 Fonts are fetched from Google Fonts at build time into a temp directory and are
 never committed to the repository. The card is regenerated from scratch, so it
@@ -43,7 +47,7 @@ FONTS = {
 }
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-OUT = os.path.join(ROOT, "assets", "img", "og-cover.png")
+OUT = os.path.join(ROOT, "assets", "img", "og-cover.jpg")
 
 
 def fetch(url, headers=None):
@@ -161,7 +165,9 @@ def main():
     img = Image.blend(img, noise_img, 0.035)
 
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
-    img.save(OUT, "PNG", optimize=True)
+    img.convert("RGB").save(
+        OUT, "JPEG", quality=92, optimize=True, progressive=True, subsampling=1
+    )
     print("wrote %s (%dx%d, %d bytes)" % (OUT, img.width, img.height,
                                           os.path.getsize(OUT)))
 
